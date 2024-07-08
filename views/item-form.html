@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+    <style>
+        @keyframes moveImage {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+            100% { transform: translateX(0); }
+        }
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* background-color: #f0f0f0; */
+            background-color: black;
+        }
+        .form-container {
+            width: 70%;
+            height: 80%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .form-container img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+            animation: moveImage 2s infinite;
+        }
+        .form-content {
+            flex: 1;
+            margin-right: 30px;
+        }
+        .form-container h2 {
+            color: #DC4D01;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+        .form-content input[type="text"], 
+        .form-content input[type="file"] {
+            width: 98%;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: border-bottom-color 0.3s;
+        }
+        .form-content input[type="text"]:focus, 
+        .form-content input[type="file"]:focus {
+            border-bottom-color: #DC4D01;
+        }
+        .form-content input[type="submit"] {
+            background-color: #DC4D01;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .form-content input[type="submit"]:hover {
+            background-color: #CC5500;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <img src="../public/box.jpg" alt="Default Image">
+    <div class="form-content">
+        <h2>Add Item</h2>
+        <form action="">
+            <input type="text" placeholder="Name" required>
+            <input type="text" placeholder="Location" required>
+            <input type="file" required>
+            <input type="submit" value="Add Item">
+        </form>
+    </div>
+</div>
+</body>
+</html>
