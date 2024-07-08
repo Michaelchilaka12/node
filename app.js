@@ -67,7 +67,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 // // Serve static files from the 'uploads' directory
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/views', express.static(path.join(__dirname, 'views')));
 
 // Route to render the form
 app.get('/', (req, res) => {
