@@ -49,7 +49,7 @@ db.connect((err) => {
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
@@ -76,11 +76,11 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 // // Serve static files from the 'uploads' directory
-app.use('/views', express.static(path.join(__dirname, 'views')));
+// app.use('/views', express.static(path.join(__dirname, 'views')));
 
 // Route to render the form
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // const path = require('path'); // Ensure path module is imported
