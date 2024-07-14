@@ -22,11 +22,20 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // MySQL configuration
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '', // Enter your MySQL root password here
-  database: 'app'
+  host: 'localhost',       // Hostname of the MySQL server
+  user: 'root',            // MySQL user
+  password: '',            // MySQL user's password (usually empty for XAMPP)
+  database: 'App'       // Database name
 });
+
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err.stack);
+    return;
+  }
+  console.log('Connected to MySQL ' );
+});
+
 
 // Connect to MySQL
 db.connect((err) => {
