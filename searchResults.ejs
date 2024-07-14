@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" aria-describedby="delivery">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+    
+    #map {
+      height: 400px;
+    }
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            width: 100vw;
+            background-color: #0a0202;
+        }
+        .container {
+            width: 1000%;
+            height: 120%;
+            max-width: 1200px;
+            background-color: rgb(237, 236, 245);
+            /* background-color: #fff; */
+            padding: 20px 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .container h1 {
+            color: #DC4D01;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 50px;
+        }
+        .container ul h2 {
+            color: #DC4D01;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+        .form-content {
+            flex: 2;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-right: 30px;
+        }
+
+        canvas {
+            /* border: 1px solid black; */
+            /* background-color: white; */
+        }
+        table {
+    border-collapse: collapse;
+    width: auto;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+    height: 500px;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Search Results</h1>
+    <% if (items.length > 0) { %>
+        <div class="form-content">
+            <% items.forEach(item => { %>
+                <h1>RECIEVERS DETAILS</h1>
+
+                <table>
+                    <tr>
+                        <td><label for="value1">FIRSTNAME:</label><h2><%= item.FirstName %></h2></td>
+                        <td><label for="value2">LASTNAME:</label><h2><%= item.LastName %></h2></td>
+                    </tr>
+                    <tr>
+                        <td><label for="value3">COUNTRY:</label><h2><%= item.Country %></h2></td>
+                        <td><label for="value4">CITY:</label><h2> <%= item.City %></h2></td>
+                    </tr>
+                    <tr>
+                        <td><label for="value5">ADDRESS:</label><h2><%= item.Address %></h2></td>
+                        <td><label for="value6">STATUS:</label><h2><%= item.Status %></h2></td>
+                    </tr>
+                </table>
+                    
+                    <% if (item.Status ==="moving" || item.Status ==="MOVING"){ %>
+                        <canvas id="myCanvas" width="800" height="200"></canvas>
+                    <% } else{ %>
+                        <canvas id="myCanvas1" width="800" height="200"></canvas>
+                    <% } %>
+                    
+            <% }) %>
+        </div>
+    <% } else { %>
+        <p>No items found with that name.</p>
+    <% } %>
+    
+
+    
+</div>
+   
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const startX = 10;
+        const endX = 800;
+        const y = 100;
+        const radius = 20;
+
+        let posX = startX;
+
+        function drawLine() {
+            ctx.beginPath();
+            ctx.moveTo(startX, y);
+            ctx.lineTo(endX, y);
+            ctx.stroke();
+        }
+
+        function drawCircle(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = 'blue';
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawLine();
+            drawCircle(posX, y, radius);
+            posX += 1;
+            if (posX > endX) {
+                posX = startX;
+            }
+            requestAnimationFrame(animate);
+        }
+
+        drawLine();
+        animate();
+    </script>
+
+
+
+
+
+    <script>
+        const canvas1 = document.getElementById('myCanvas1');
+        const ctx1 = canvas1.getContext('2d');
+
+        const startX1 = 50;
+        const endX1 = 750;
+        const y1 = 100;
+        const radius1 = 20;
+        const circleX1 = 400; // Position of the circle on the line
+
+        function drawLine1() {
+            ctx1.beginPath();
+           ctx1.moveTo(startX1, y1);
+           ctx1.lineTo(endX1, y1);
+           ctx1.stroke();
+        }
+
+        function drawCircle1(x, y, radius1) {
+           ctx1.beginPath();
+           ctx1.arc(x, y, radius1, 0, 2 * Math.PI);
+           ctx1.fillStyle = 'red';
+           ctx1.fill();
+           ctx1.stroke();
+        }
+
+        function draw1() {
+           ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+            drawLine1();
+            drawCircle1(circleX1, y1, radius1);
+        }
+
+        draw1();
+    </script>
