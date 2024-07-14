@@ -49,7 +49,7 @@ db.connect((err) => {
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
